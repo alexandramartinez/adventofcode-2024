@@ -26,3 +26,22 @@ var b = payload.column_3 orderBy $
 </details>
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday1%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
+
+### Part 2
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+import countBy from dw::core::Arrays
+var p = read(payload, "application/csv", {header:false,separator:" "})
+var a = p.column_0
+var b = p.column_3
+---
+a map ((item) -> 
+    (b countBy ($==item)) * item
+) then sum($)
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday1%2Fpart2"><img width="300" src="/images/dwplayground-button.png"><a>
