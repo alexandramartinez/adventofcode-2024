@@ -2,17 +2,17 @@
 
 DataWeave scripts used in the [adventofcode.com](https://adventofcode.com/) site for 2024.
 
+[Ryan's private leaderboard](https://adventofcode.com/2024/leaderboard/private/view/1739830)
+
+**Other Muleys**
+
+- [Ryan Hoegg](https://github.com/rhoegg/adventofcode2024)
+- [iglosiggio](https://github.com/iglosiggio/aoc2024)
+
 ## Similar repos
 
 [![](https://github-readme-stats.vercel.app/api/pin/?username=alexandramartinez&repo=adventofcode-2023&theme=neon)](https://github.com/alexandramartinez/adventofcode-2023)
 [![](https://github-readme-stats.vercel.app/api/pin/?username=alexandramartinez&repo=adventofcode-2022&theme=neon)](https://github.com/alexandramartinez/adventofcode-2022)
-
-## Other Muleys
-
-[Ryan's private leaderboard](https://adventofcode.com/2024/leaderboard/private/view/1739830)
-
-- [Ryan Hoegg](https://github.com/rhoegg/adventofcode2024)
-- [iglosiggio](https://github.com/iglosiggio/aoc2024)
 
 ## 🔹 Day 1
 
