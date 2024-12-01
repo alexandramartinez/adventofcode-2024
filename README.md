@@ -9,6 +9,8 @@ DataWeave scripts used in the [adventofcode.com](https://adventofcode.com/) site
 
 ## Other Muleys
 
+[Ryan's private leaderboard](https://adventofcode.com/2024/leaderboard/private/view/1739830)
+
 - [Ryan Hoegg](https://github.com/rhoegg/adventofcode2024)
 - [iglosiggio](https://github.com/iglosiggio/aoc2024)
 
