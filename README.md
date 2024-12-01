@@ -7,6 +7,11 @@ DataWeave scripts used in the [adventofcode.com](https://adventofcode.com/) site
 [![](https://github-readme-stats.vercel.app/api/pin/?username=alexandramartinez&repo=adventofcode-2023&theme=neon)](https://github.com/alexandramartinez/adventofcode-2023)
 [![](https://github-readme-stats.vercel.app/api/pin/?username=alexandramartinez&repo=adventofcode-2022&theme=neon)](https://github.com/alexandramartinez/adventofcode-2022)
 
+## Other Muleys
+
+- [Ryan Hoegg](https://github.com/rhoegg/adventofcode2024)
+- [iglosiggio](https://github.com/iglosiggio/aoc2024)
+
 ## 🔹 Day 1
 
 ### Part 1
