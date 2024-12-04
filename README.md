@@ -9,6 +9,7 @@ DataWeave scripts used in the [adventofcode.com](https://adventofcode.com/) site
 
 - [Ryan Hoegg](https://github.com/rhoegg/adventofcode2024)
 - [Pranav Davar](https://github.com/pranav-davar/advent-of-code-2024-dw)
+- [Matthias Transier](https://github.com/mtransier/AdventOfCode2024)
 
 ## Similar repos
 
