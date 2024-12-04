@@ -254,3 +254,34 @@ flatten
 </details>
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday4%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
+
+### Part 2
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+var lines = payload splitBy "\n"
+fun getLetter(x:Number,y:Number) = if ((x<0) or (y<0)) "" else (lines[x][y] default "")
+var xmas = ["MAS", "SAM"]
+---
+flatten
+(lines map ((lineStr, lineidx) -> 
+    (lineStr splitBy "") map ((letter, letteridx) ->
+        if (letter=="A") do {
+            var topleft = getLetter(lineidx-1, letteridx-1)
+            var topright = getLetter(lineidx-1, letteridx+1)
+            var bottomleft = getLetter(lineidx+1, letteridx-1)
+            var bottomright = getLetter(lineidx+1, letteridx+1)
+            var cross1 = topleft ++ letter ++ bottomright
+            var cross2 = topright ++ letter ++ bottomleft
+            ---
+            if ( (xmas contains cross1) and (xmas contains cross2) ) 1 else 0
+        }
+        else 0
+    )
+)) then sum($)
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday4%2Fpart2"><img width="300" src="/images/dwplayground-button.png"><a>
