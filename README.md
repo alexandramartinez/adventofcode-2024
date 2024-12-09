@@ -400,3 +400,36 @@ lines(payload) map ((equation, equationIndex) -> do {
 </details>
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday7%2Fpart2"><img width="300" src="/images/dwplayground-button.png"><a>
+
+## 🔹 Day 9
+
+### Part 1
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+import divideBy from dw::core::Arrays
+var p = (payload splitBy "")
+fun repeat(text: String, times: Number): Array =
+    if(times <= 0) [] else (1 to times) map text
+var files:Array = flatten((p divideBy 2) map ((item, index) -> 
+    repeat(index, item[0]) ++ repeat(".", item[1] default 0)
+))
+var filesClean:Array = files - "."
+var thisthing = (files reduce ((item, acc={ r:[], idx:-1 }) -> item match {
+    case "." -> {
+        r: acc.r + filesClean[acc.idx],
+        idx: acc.idx - 1
+    }
+    else -> {
+        r: acc.r + item,
+        idx: acc.idx
+    }
+}))
+---
+thisthing.r[0 to thisthing.idx] map ($*$$) then sum($)
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday9%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
