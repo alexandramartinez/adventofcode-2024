@@ -2,6 +2,22 @@
 
 DataWeave scripts used in the [adventofcode.com](https://adventofcode.com/) site for 2024.
 
+I used the [DataWeave extension for VS Code](https://marketplace.visualstudio.com/items?itemName=MuleSoftInc.dataweave) to create these scripts. Most of them should run in the [DataWeave Playground](https://dataweave.mulesoft.com/learn/dataweave) with no issue. However, some of the more complex examples have to run with the [DataWeave CLI](https://github.com/mulesoft-labs/data-weave-cli).
+
+To run any script with the CLI, you can use the following syntax:
+
+```shell
+dw run -i payload=<path to payload file> -f <path to transform.dwl file>
+```
+
+For example:
+
+```shell
+dw run -i payload=scripts/day1/part1/inputs/payload.csv -f scripts/day1/part1/transform.dwl
+```
+
+If there's no input, just remove the `-i payload=<file>` part.
+
 > [!TIP]
 > Check out [Ryan's private leaderboard](https://adventofcode.com/2024/leaderboard/private/view/1739830)!
 
@@ -352,3 +368,35 @@ lines(payload) map ((equation, equationIndex) -> do {
 </details>
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday7%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
+
+### Part 2
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+%dw 2.0
+import drop from dw::core::Arrays
+import lines from dw::core::Strings
+fun flatScan(a, b) = flatten(a scan b)
+fun getResults(values, r=0) = do {
+    var this = values[0]
+    var next = values[1]
+    var newValues = values drop 1
+    ---
+    if (isEmpty(next)) r
+    else if (r==0) flatten([getResults(newValues, this+next), getResults(newValues, this*next), getResults(newValues, "$this$next" as Number)])
+    else flatten([getResults(newValues, r+next),  getResults(newValues, r*next), getResults(newValues, "$r$next" as Number)])
+}
+---
+lines(payload) map ((equation, equationIndex) -> do {
+    var nums = equation flatScan /\d+/
+    var result = nums[0] as Number
+    var values = nums[1 to -1] map ($ as Number)
+    ---
+    if (getResults(values) contains result) result else 0
+}) then sum($)
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday7%2Fpart2"><img width="300" src="/images/dwplayground-button.png"><a>
