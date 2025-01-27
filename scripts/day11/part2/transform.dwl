@@ -37,5 +37,5 @@ fun arrToObj(arr:Array,result={}) = arr match {
     case [] -> result
 }
 ---
-arrToObj(payload splitBy " ") blinkTimes 25
+arrToObj(payload splitBy " ") blinkTimes 75
 then sum(valuesOf($))
