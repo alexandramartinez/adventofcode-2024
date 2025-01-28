@@ -1051,3 +1051,110 @@ It contains:
 - A region of S plants with price 3 * 8 = 24.
 
 So, it has a total price of 1930.
+
+## 🔹 Day 25
+
+Challenge: [Code Chronicle](https://adventofcode.com/2024/day/25)
+
+Example input:
+
+```
+#####
+.####
+.####
+.####
+.#.#.
+.#...
+.....
+
+#####
+##.##
+.#.##
+...##
+...#.
+...#.
+.....
+
+.....
+#....
+#....
+#...#
+#.#.#
+#.###
+#####
+
+.....
+.....
+#.#..
+###..
+###.#
+###.#
+#####
+
+.....
+.....
+.....
+#....
+#.#..
+#.#.#
+#####
+```
+
+### Part 1 
+
+The locks are schematics that have the top row filled (#) and the bottom row empty (.); the keys have the top row empty and the bottom row filled. If you look closely, you'll see that each schematic is actually a set of columns of various heights, either extending downward from the top (for locks) or upward from the bottom (for keys).
+
+For locks, those are the pins themselves; you can convert the pins in schematics to a list of heights, one per column. For keys, the columns make up the shape of the key where it aligns with pins; those can also be converted to a list of heights.
+
+In this example, converting both locks to pin heights produces:
+
+- 0,5,3,4,3
+- 1,2,0,5,3
+
+Converting all three keys to heights produces:
+
+- 5,0,2,1,3
+- 4,3,4,0,2
+- 3,0,2,0,1
+
+Then, you can try every key with every lock:
+
+- Lock 0,5,3,4,3 and key 5,0,2,1,3: overlap in the last column.
+- Lock 0,5,3,4,3 and key 4,3,4,0,2: overlap in the second column.
+- Lock 0,5,3,4,3 and key 3,0,2,0,1: all columns fit!
+- Lock 1,2,0,5,3 and key 5,0,2,1,3: overlap in the first column.
+- Lock 1,2,0,5,3 and key 4,3,4,0,2: all columns fit!
+- Lock 1,2,0,5,3 and key 3,0,2,0,1: all columns fit!
+
+So, in this example, the number of unique lock/key pairs that fit together without overlapping in any column is 3.
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+import every, countBy from dw::core::Arrays
+output application/json
+fun getMap(arr) = arr map ((item) -> do {
+    var lines = (item splitBy "\n")[1 to -2]
+    ---
+    (0 to sizeOf(lines)-1) map (
+        sum(lines map ((line) -> 
+            if (line[$] == "#") 1 else 0
+        ))
+    )
+})
+var arr = (payload splitBy "\n\n")
+var locks = getMap(arr filter ($ startsWith "#####"))
+var keys = getMap(arr filter ($ startsWith "....."))
+---
+sum(locks map ((lock, locki) -> 
+    (keys map ((key, keyi) -> 
+        (key map ((keypin, keypini) -> 
+            5-keypin >= lock[keypini]
+        )) every $
+    )) countBy $
+))
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday25%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
