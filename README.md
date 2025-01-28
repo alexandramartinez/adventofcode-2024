@@ -1052,6 +1052,127 @@ It contains:
 
 So, it has a total price of 1930.
 
+## 🔹 Day 24
+
+Challenge: [Crossed Wires](https://adventofcode.com/2024/day/24)
+
+Example input:
+
+```
+x00: 1
+x01: 0
+x02: 1
+x03: 1
+x04: 0
+y00: 1
+y01: 1
+y02: 1
+y03: 1
+y04: 1
+
+ntg XOR fgs -> mjb
+y02 OR x01 -> tnw
+kwq OR kpj -> z05
+x00 OR x03 -> fst
+tgd XOR rvg -> z01
+vdt OR tnw -> bfw
+bfw AND frj -> z10
+ffh OR nrd -> bqk
+y00 AND y03 -> djm
+y03 OR y00 -> psh
+bqk OR frj -> z08
+tnw OR fst -> frj
+gnj AND tgd -> z11
+bfw XOR mjb -> z00
+x03 OR x00 -> vdt
+gnj AND wpb -> z02
+x04 AND y00 -> kjc
+djm OR pbm -> qhw
+nrd AND vdt -> hwm
+kjc AND fst -> rvg
+y04 OR y02 -> fgs
+y01 AND x02 -> pbm
+ntg OR kjc -> kwq
+psh XOR fgs -> tgd
+qhw XOR tgd -> z09
+pbm OR djm -> kpj
+x03 XOR y03 -> ffh
+x00 XOR y04 -> ntg
+bfw OR bqk -> z06
+nrd XOR fgs -> wpb
+frj XOR qhw -> z04
+bqk OR frj -> z07
+y03 OR x01 -> nrd
+hwm AND bqk -> z03
+tgd XOR rvg -> z12
+tnw OR pbm -> gnj
+```
+
+### Part 1
+
+The device seems to be trying to produce a number through some boolean logic gates. Each gate has two inputs and one output. The gates all operate on values that are either true (1) or false (0).
+
+- AND gates output 1 if both inputs are 1; if either input is 0, these gates output 0.
+- OR gates output 1 if one or both inputs is 1; if both inputs are 0, these gates output 0.
+- XOR gates output 1 if the inputs are different; if the inputs are the same, these gates output 0.
+
+Combining the bits from all wires starting with z produces the binary number 0011111101000. Converting this number to decimal produces 2024.
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+import fromBinary from dw::core::Numbers
+import lines from dw::core::Strings
+output application/json
+var splitPayload = payload splitBy "\n\n"
+var wires:Object = (lines(splitPayload[0]) map ($ splitBy ": ")) reduce ((item, a={}) -> 
+    a ++ {
+        (item[0]): item[1] ~= 1
+    }
+)
+fun getWiresObject(gates:Array<String>, wiresRec) = {
+    (gates map ((gate) -> do {
+        @Lazy
+        var split = gate splitBy " "
+        @Lazy
+        var wire1 = split[0]
+        @Lazy
+        var wire2 = split[2]
+        @Lazy
+        var wire3 = split[-1]
+        ---
+        if (!isEmpty(wiresRec[wire1]) and !isEmpty(wiresRec[wire2])) {
+            (wire3): split[1] match {
+                case "AND" -> wiresRec[wire1] and wiresRec[wire2]
+                case "OR" -> wiresRec[wire1] or wiresRec[wire2]
+                case "XOR" -> wiresRec[wire1] != wiresRec[wire2]
+            }
+        }
+        else {
+            keepTrying: gate
+        }
+    }))
+}
+fun getWiresTailRec(gates:Array<String>, wiresRec=wires) = do {
+    var result = getWiresObject(gates, wiresRec)
+    var newGates = result.*keepTrying
+    var newWires = wiresRec ++ result
+    ---
+    if (isEmpty(newGates)) newWires 
+    else getWiresTailRec(newGates, newWires - "keepTrying")
+}
+---
+getWiresTailRec(lines(splitPayload[1])) 
+filterObject ($$ startsWith "z")
+orderBy $$
+mapObject (($$): if ($) 1 else 0)
+then fromBinary(valuesOf($)[-1 to 0] joinBy "")
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday24%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
+
 ## 🔹 Day 25
 
 Challenge: [Code Chronicle](https://adventofcode.com/2024/day/25)
@@ -1158,3 +1279,7 @@ sum(locks map ((lock, locki) ->
 </details>
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday25%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
+
+### Part 2
+
+> Need to finish the rest of the challenges to be unlocked x-x
