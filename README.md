@@ -1052,6 +1052,88 @@ It contains:
 
 So, it has a total price of 1930.
 
+## 🔹 Day 23
+
+Challenge: [LAN Party](https://adventofcode.com/2024/day/23)
+
+Example input:
+
+```
+kh-tc
+qp-kh
+de-cg
+ka-co
+yn-aq
+qp-ub
+cg-tb
+vc-aq
+tb-ka
+wh-tc
+yn-cg
+kh-ub
+ta-co
+de-co
+tc-td
+tb-wq
+wh-td
+ta-ka
+td-qp
+aq-cg
+wq-ub
+ub-vc
+de-ta
+wq-aq
+wq-vc
+wh-yn
+ka-de
+kh-ta
+co-tc
+wh-qp
+tb-vc
+td-yn
+```
+
+### Part 1
+
+The network map provides a list of every connection between two computers.
+
+Each line of text in the network map represents a single connection; the line kh-tc represents a connection between the computer named kh and the computer named tc. Connections aren't directional; tc-kh would mean exactly the same thing.
+
+Start by looking for sets of three computers where each computer in the set is connected to the other two computers.
+
+Find all the sets of three inter-connected computers. How many contain at least one computer with a name that starts with t? The answer is 7.
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+import lines from dw::core::Strings
+output application/json
+var connections = lines(payload) map ($ splitBy "-") reduce ((item, a={}) -> 
+    a update {
+        case x at ."$(item[0])"! -> (a[item[0]] default []) + item[1]
+        case y at ."$(item[1])"! -> (a[item[1]] default []) + item[0]
+    }
+)
+var matches = flatten(namesOf(connections) map ((computer1) -> 
+    flatten(connections[computer1] map ((computer2) -> do {
+        var threeMatchesOne = (connections[computer2] filter ((computer3) -> connections[computer3] contains computer1))
+        ---
+        if (!isEmpty(threeMatchesOne)) 
+            threeMatchesOne filter ((computer3) -> (computer1 startsWith "t") or (computer2 startsWith "t") or (computer3 startsWith "t"))
+            map ((computer3) ->
+                [computer1, computer2, computer3] orderBy $
+            )
+        else []
+    })) 
+)) distinctBy $
+---
+sizeOf(matches)
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday23%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
+
 ## 🔹 Day 24
 
 Challenge: [Crossed Wires](https://adventofcode.com/2024/day/24)
@@ -1172,6 +1254,10 @@ then fromBinary(valuesOf($)[-1 to 0] joinBy "")
 </details>
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday24%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
+
+### Part 2 (unsolved)
+
+(explanation is too long and confusing x-x it's easier to refer to the website)
 
 ## 🔹 Day 25
 
