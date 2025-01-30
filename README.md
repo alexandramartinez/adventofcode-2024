@@ -1134,6 +1134,14 @@ sizeOf(matches)
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday23%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
+### Part 2 (unsolved)
+
+Since it doesn't seem like any employees are around, you figure they must all be at the LAN party. If that's true, the LAN party will be the largest set of computers that are all connected to each other. That is, for each computer at the LAN party, that computer will have a connection to every other computer at the LAN party.
+
+In the above example, the largest set of computers that are all connected to each other is made up of co, de, ka, and ta. Each computer in this set has a connection to every other computer in the set.
+
+The LAN party posters say that the password to get into the LAN party is the name of every computer at the LAN party, sorted alphabetically, then joined together with commas. (The people running the LAN party are clearly a bunch of nerds.) In this example, the password would be co,de,ka,ta.
+
 ## 🔹 Day 24
 
 Challenge: [Crossed Wires](https://adventofcode.com/2024/day/24)
