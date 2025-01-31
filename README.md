@@ -1052,6 +1052,76 @@ It contains:
 
 So, it has a total price of 1930.
 
+## 🔹 Day 19
+
+Challenge: [Linen Layout](https://adventofcode.com/2024/day/19)
+
+Example input:
+
+```
+r, wr, b, g, bwu, rb, gb, br
+
+brwrr
+bggr
+gbbr
+rrbgbr
+ubwu
+bwurrg
+brgr
+bbrgwb
+```
+
+### Part 1
+
+The first line indicates the available towel patterns. After the blank line, the remaining lines each describe a design the onsen would like to be able to display.
+
+Not all designs will be possible with the available towels. In the above example, the designs are possible or impossible as follows:
+
+- brwrr can be made with a br towel, then a wr towel, and then finally an r towel.
+- bggr can be made with a b towel, two g towels, and then an r towel.
+- gbbr can be made with a gb towel and then a br towel.
+- rrbgbr can be made with r, rb, g, and br.
+- ubwu is impossible.
+- bwurrg can be made with bwu, r, r, and g.
+- brgr can be made with br, g, and r.
+- bbrgwb is impossible.
+
+In this example, 6 of the eight designs are possible with the available towel patterns.
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+import countBy from dw::core::Arrays
+import lines, substringAfter from dw::core::Strings
+output application/json
+var split = payload splitBy "\n\n"
+var patternsList = split[0] splitBy ", "
+fun checkDesign(initialDesign:String, currentDesign:String, acc="") = do {
+    var filtered = patternsList filter (currentDesign startsWith $)
+    ---
+    if (isEmpty(currentDesign))
+        initialDesign == acc
+    else if (isEmpty(filtered)) false
+    else filtered 
+    reduce ((pattern, matches=false) -> 
+        if (matches) true
+        else checkDesign(
+            initialDesign,
+            currentDesign substringAfter pattern,
+            acc ++ pattern
+        ) 
+    )
+}
+---
+(lines(split[1]) map ((design) -> 
+    checkDesign(design,design)
+)) countBy $
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday19%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
+
 ## 🔹 Day 23
 
 Challenge: [LAN Party](https://adventofcode.com/2024/day/23)
