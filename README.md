@@ -1134,13 +1134,47 @@ sizeOf(matches)
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday23%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2 (unsolved)
+### Part 2 
 
 Since it doesn't seem like any employees are around, you figure they must all be at the LAN party. If that's true, the LAN party will be the largest set of computers that are all connected to each other. That is, for each computer at the LAN party, that computer will have a connection to every other computer at the LAN party.
 
 In the above example, the largest set of computers that are all connected to each other is made up of co, de, ka, and ta. Each computer in this set has a connection to every other computer in the set.
 
 The LAN party posters say that the password to get into the LAN party is the name of every computer at the LAN party, sorted alphabetically, then joined together with commas. (The people running the LAN party are clearly a bunch of nerds.) In this example, the password would be co,de,ka,ta.
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+import lines from dw::core::Strings
+output application/json
+var connections = lines(payload) map ($ splitBy "-") reduce ((item, a={}) -> 
+    a update {
+        case x at ."$(item[0])"! -> (a[item[0]] default []) + item[1]
+        case y at ."$(item[1])"! -> (a[item[1]] default []) + item[0]
+    }
+)
+var list = namesOf(connections) map ((computer1) -> do {
+    var cc1 = connections[computer1]
+    var list = (cc1 + computer1) orderBy $
+    var strings = (cc1 map ((computer2) -> do {
+        var tocompare = (connections[computer2] + computer2) orderBy $
+        ---
+        (tocompare filter (list contains $)) joinBy ","
+    })) orderBy $
+    ---
+    ((strings orderBy $) groupBy $) filterObject (sizeOf($) >= 2)
+    mapObject ((value, key, index) -> {
+        size: sizeOf(value),
+        str: key
+    })
+})
+---
+((list filter (!isEmpty($))) orderBy -($.size))[0].str
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday23%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ## 🔹 Day 24
 
