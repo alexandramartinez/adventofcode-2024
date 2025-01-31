@@ -1174,7 +1174,7 @@ var list = namesOf(connections) map ((computer1) -> do {
 ```
 </details>
 
-<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday23%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday23%2Fpart2"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ## 🔹 Day 24
 
