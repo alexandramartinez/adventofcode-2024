@@ -18,6 +18,9 @@ dw run -i payload=scripts/day1/part1/inputs/payload.csv -f scripts/day1/part1/tr
 
 If there's no input, just remove the `-i payload=<file>` part.
 
+You can filter the challenges using one of the following keywords (ctrl+F or cmd+F):
+- Keywords: `csv`, `math`, `regex`, `reduce`, `strings`, `lines`, `matrix`, `ordering`, `two inputs`, `rules`, `navigation`, `recursive`, `tree`, `comparisons/matching`
+
 > [!TIP]
 > Check out [Ryan's private leaderboard](https://adventofcode.com/2024/leaderboard/private/view/1739830)!
 
@@ -62,7 +65,6 @@ Total stars: ⭐️ 24 / 50
 
 - Challenge: [Historian Hysteria](https://adventofcode.com/2024/day/1)
 - Keywords: `csv`, `math`
-- Difficulty level: 🟢 easy peasy lemon squeezy 🟢
 - Example input:
 
     ```
@@ -115,9 +117,9 @@ a map ((item) ->
 
 ## 🔹 Day 2
 
-Challenge: [Red-Nosed Reports](https://adventofcode.com/2024/day/2)
-
-Example input:
+- Challenge: [Red-Nosed Reports](https://adventofcode.com/2024/day/2)
+- Keywords: `reduce`, `lines`
+- Example input:
 
 ```
 7 6 4 2 1
@@ -243,9 +245,9 @@ then sizeOf($)+sizeOf(safeOnes)
 
 ## 🔹 Day 3
 
-Challenge: [Mull It Over](https://adventofcode.com/2024/day/3)
-
-Example inputs:
+- Challenge: [Mull It Over](https://adventofcode.com/2024/day/3)
+- Keywords: `regex`, `reduce`, `strings`
+- Example inputs:
 
 ```
 xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))
@@ -299,9 +301,9 @@ xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))
 
 ## 🔹 Day 4
 
-Challenge: [Ceres Search](https://adventofcode.com/2024/day/4)
-
-Example inputs:
+- Challenge: [Ceres Search](https://adventofcode.com/2024/day/4)
+- Keywords: `matrix`
+- Example inputs:
 
 ```
 MMMSXXMASM
@@ -395,9 +397,9 @@ flatten
 
 ## 🔹 Day 5
 
-Challenge: [Print Queue](https://adventofcode.com/2024/day/5)
-
-Example input:
+- Challenge: [Print Queue](https://adventofcode.com/2024/day/5)
+- Keywords: `lines`, `ordering`, `two inputs`, `rules`
+- Example input:
 
 ```
 47|53
@@ -466,9 +468,9 @@ tbd
 
 ## 🔹 Day 6
 
-Challenge: [Guard Gallivant](https://adventofcode.com/2024/day/6)
-
-Example input:
+- Challenge: [Guard Gallivant](https://adventofcode.com/2024/day/6)
+- Keywords: `matrix`, `navigation`, `recursive`
+- Example input:
 
 ```
 ....#.....
@@ -541,9 +543,9 @@ tbd
 
 ## 🔹 Day 7
 
-Challenge: [Bridge Repair](https://adventofcode.com/2024/day/7)
-
-Example input:
+- Challenge: [Bridge Repair](https://adventofcode.com/2024/day/7)
+- Keywords: `math`, `lines`, `recursive`, `tree`
+- Example input:
 
 ```
 190: 10 19
@@ -623,9 +625,9 @@ lines(payload) map ((equation, equationIndex) -> do {
 
 ## 🔹 Day 8
 
-Challenge: [Resonant Collinearity](https://adventofcode.com/2024/day/8)
-
-Example input:
+- Challenge: [Resonant Collinearity](https://adventofcode.com/2024/day/8)
+- Keywords: `matrix`, `recursive`
+- Example input:
 
 ```
 ............
@@ -785,9 +787,9 @@ then sizeOf($)
 
 ## 🔹 Day 9
 
-Challenge: [Disk Fragmenter](https://adventofcode.com/2024/day/9)
-
-Example input:
+- Challenge: [Disk Fragmenter](https://adventofcode.com/2024/day/9)
+- Keywords: `reduce`, `strings`, `lines`
+- Example input:
 
 ```
 2333133121414131402
@@ -830,9 +832,9 @@ tbd
 
 ## 🔹 Day 10
 
-Challenge: [Hoof It](https://adventofcode.com/2024/day/10)
-
-Example input:
+- Challenge: [Hoof It](https://adventofcode.com/2024/day/10)
+- Keywords: `matrix`, `navigation`, `recursive`
+- Example input:
 
 ```
 89010123
@@ -917,9 +919,9 @@ flatten(lines map ((line, lineidx) ->
 
 ## 🔹 Day 11
 
-Challenge: [Plutonian Pebbles](https://adventofcode.com/2024/day/11)
-
-Example input:
+- Challenge: [Plutonian Pebbles](https://adventofcode.com/2024/day/11)
+- Keywords: `recursive`
+- Example input:
 
 ```
 Initial arrangement:
@@ -1027,9 +1029,9 @@ then sum(valuesOf($))
 
 ## 🔹 Day 12
 
-Challenge: [Garden Groups](https://adventofcode.com/2024/day/12)
-
-Example input:
+- Challenge: [Garden Groups](https://adventofcode.com/2024/day/12)
+- Keywords: `matrix`, `navigation`, `recursive`
+- Example input:
 
 ```
 RRRRIICCFF
@@ -1044,11 +1046,15 @@ MIIISIJEEE
 MMMISSJEEE
 ```
 
+### Part 1 (unsolved)
+
+tbd
+
 ## 🔹 Day 19
 
-Challenge: [Linen Layout](https://adventofcode.com/2024/day/19)
-
-Example input:
+- Challenge: [Linen Layout](https://adventofcode.com/2024/day/19)
+- Keywords: `strings`, `lines`, `two inputs`, `rules`, `recursive`
+- Example input:
 
 ```
 r, wr, b, g, bwu, rb, gb, br
@@ -1105,9 +1111,9 @@ tbd
 
 ## 🔹 Day 23
 
-Challenge: [LAN Party](https://adventofcode.com/2024/day/23)
-
-Example input:
+- Challenge: [LAN Party](https://adventofcode.com/2024/day/23)
+- Keywords: `lines`, `comparisons/matching`
+- Example input:
 
 ```
 kh-tc
@@ -1215,9 +1221,9 @@ var list = namesOf(connections) map ((computer1) -> do {
 
 ## 🔹 Day 24
 
-Challenge: [Crossed Wires](https://adventofcode.com/2024/day/24)
-
-Example input:
+- Challenge: [Crossed Wires](https://adventofcode.com/2024/day/24)
+- Keywords: `strings`, `lines`, `two inputs`, `rules`, `recursive`, `comparisons/matching`
+- Example input:
 
 ```
 x00: 1
@@ -1332,9 +1338,9 @@ tbd
 
 ## 🔹 Day 25
 
-Challenge: [Code Chronicle](https://adventofcode.com/2024/day/25)
-
-Example input:
+- Challenge: [Code Chronicle](https://adventofcode.com/2024/day/25)
+- Keywords: `matrix`, `two inputs`, `comparisons/matching`
+- Example input:
 
 ```
 #####
