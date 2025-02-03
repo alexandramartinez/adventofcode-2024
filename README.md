@@ -60,18 +60,20 @@ Total stars: ⭐️ 24 / 50
 
 ## 🔹 Day 1
 
-Challenge: [Historian Hysteria](https://adventofcode.com/2024/day/1)
+- Challenge: [Historian Hysteria](https://adventofcode.com/2024/day/1)
+- Keywords: `csv`, `math`
+- Difficulty level: 🟢 easy peasy lemon squeezy 🟢
+- Example input:
 
-Example input:
+    ```
+    3   4
+    4   3
+    2   5
+    1   3
+    3   9
+    3   3
+    ```
 
-```
-3   4
-4   3
-2   5
-1   3
-3   9
-3   3
-```
 </details>
 
 ### Part 1
