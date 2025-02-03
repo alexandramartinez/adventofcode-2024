@@ -688,7 +688,7 @@ lines(payload) map ((equation, equationIndex) -> do {
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday7%2Fpart2"><img width="300" src="/images/dwplayground-button.png"><a>
 
-## 🔹 Day 8 (unsolved)
+## 🔹 Day 8
 
 Challenge: [Resonant Collinearity](https://adventofcode.com/2024/day/8)
 
@@ -709,7 +709,7 @@ Example input:
 ............
 ```
 
-### Part 1 (unsolved)
+### Part 1
 
 Scanning across the city, you find that there are actually many such antennas. Each antenna is tuned to a specific frequency indicated by a single lowercase letter, uppercase letter, or digit.
 
@@ -718,6 +718,72 @@ The signal only applies its nefarious effect at specific antinodes based on the 
 Because the topmost A-frequency antenna overlaps with a 0-frequency antinode, there are 14 total unique locations that contain an antinode within the bounds of the map.
 
 How many unique locations within the bounds of the map contain an antinode?
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+import lines, isAlphanumeric from dw::core::Strings
+output application/json
+fun getChar(arr:Array<String>,x:Number,y:Number):String = if ((x<0) or (y<0)) "" else (arr[y][x] default "")
+fun isAntenna(char:String) = isAlphanumeric(char)
+fun getAntinodesBetween(coord1, coord2) = do {
+    var x1 = coord1.x + coord1.x - coord2.x
+    var y1 = coord1.y + coord1.y - coord2.y
+    var x2 = coord2.x + coord2.x - coord1.x
+    var y2 = coord2.y + coord2.y - coord1.y
+    ---
+    [
+        {
+            antinodeChar: getChar(payloadArr,x1,y1),
+            antinodeCoords: {
+                x: x1,
+                y: y1
+            }
+        },
+        {
+            antinodeChar: getChar(payloadArr,x2,y2),
+            antinodeCoords: {
+                x: x2,
+                y: y2
+            }
+        }
+    ]
+}
+var payloadArr = lines(payload)
+var antennas = flatten(payloadArr map ((line, y) -> 
+    (line splitBy "") map ((char, x) -> 
+        if (isAntenna(char)) {
+            char: char,
+            coords: {
+                x: x,
+                y: y,
+            }
+        } else {}
+    ) filter (!isEmpty($))
+) filter (!isEmpty($)))
+---
+antennas groupBy ($.char) 
+pluck ((frequencies, frequencyGroup, index) -> do {
+    @Lazy
+    var sizeOfFrequencies = sizeOf(frequencies)
+    @Lazy
+    var numbers = 0 to sizeOfFrequencies-1
+    ---
+    if (sizeOfFrequencies >= 2) 
+        flatten(frequencies map ((frequency, fi) -> 
+            flatten((numbers - fi) map ((number) -> 
+                (getAntinodesBetween(frequency.coords,frequencies[number].coords) filter (!isEmpty($.antinodeChar)))
+            ))
+        ))
+    else []
+}) 
+then flatten($) distinctBy $ 
+then sizeOf($)
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday8%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ## 🔹 Day 9
 
@@ -1121,6 +1187,38 @@ fun checkDesign(initialDesign:String, currentDesign:String, acc="") = do {
 </details>
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday19%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
+
+### Part 2 (unsolved)
+
+Here are all of the different ways the above example's designs can be made:
+
+- brwrr can be made in two different ways: b, r, wr, r or br, wr, r.
+
+- bggr can only be made with b, g, g, and r.
+
+- gbbr can be made 4 different ways:
+
+    - g, b, b, r
+    - g, b, br
+    - gb, b, r
+    - gb, br
+
+- rrbgbr can be made 6 different ways:
+
+    - r, r, b, g, b, r
+    - r, r, b, g, br
+    - r, r, b, gb, r
+    - r, rb, g, b, r
+    - r, rb, g, br
+    - r, rb, gb, r
+
+- bwurrg can only be made with bwu, r, r, and g.
+
+- brgr can be made in two different ways: b, r, g, r or br, g, r.
+
+- ubwu and bbrgwb are still impossible.
+
+Adding up all of the ways the towels in this example could be arranged into the desired designs yields 16 (2 + 1 + 4 + 6 + 1 + 2).
 
 ## 🔹 Day 23
 
