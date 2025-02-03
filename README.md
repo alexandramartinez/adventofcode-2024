@@ -28,6 +28,10 @@ If there's no input, just remove the `-i payload=<file>` part.
 
 ## Table of Contents
 
+Total stars: ⭐️ 24 / 50
+
+![48%](https://progress-bar.xyz/48)
+
 - ⭐️⭐️ [Day 1](#-day-1)
 - ⭐️⭐️ [Day 2](#-day-2)
 - ⭐️⭐️ [Day 3](#-day-3)
