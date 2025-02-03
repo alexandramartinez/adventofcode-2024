@@ -21,16 +21,38 @@ If there's no input, just remove the `-i payload=<file>` part.
 > [!TIP]
 > Check out [Ryan's private leaderboard](https://adventofcode.com/2024/leaderboard/private/view/1739830)!
 
-### Other Muleys doing DataWeave
-
-- [Ryan Hoegg](https://github.com/rhoegg/adventofcode2024)
-- [Pranav Davar](https://github.com/pranav-davar/advent-of-code-2024-dw)
-- [Matthias Transier](https://github.com/mtransier/AdventOfCode2024)
-
 ## Similar repos
 
 [![](https://github-readme-stats.vercel.app/api/pin/?username=alexandramartinez&repo=adventofcode-2023&theme=neon)](https://github.com/alexandramartinez/adventofcode-2023)
 [![](https://github-readme-stats.vercel.app/api/pin/?username=alexandramartinez&repo=adventofcode-2022&theme=neon)](https://github.com/alexandramartinez/adventofcode-2022)
+
+## Table of Contents
+
+- ⭐️⭐️ [Day 1](#-day-1)
+- ⭐️⭐️ [Day 2](#-day-2)
+- ⭐️⭐️ [Day 3](#-day-3)
+- ⭐️⭐️ [Day 4](#-day-4)
+- ⭐️ [Day 5](#-day-5)
+- ⭐️ [Day 6](#-day-6)
+- ⭐️⭐️ [Day 7](#-day-7)
+- ⭐️⭐️ [Day 8](#-day-8)
+- ⭐️ [Day 9](#-day-9)
+- ⭐️⭐️ [Day 10](#-day-10)
+- ⭐️⭐️ [Day 11](#-day-11)
+- Day 12
+- Day 13
+- Day 14
+- Day 15
+- Day 16
+- Day 17
+- Day 18
+- ⭐️ [Day 19](#-day-19)
+- Day 20
+- Day 21
+- Day 22
+- ⭐️⭐️ [Day 23](#-day-23)
+- ⭐️ [Day 24](#-day-24)
+- ⭐️ [Day 25](#-day-25)
 
 ## 🔹 Day 1
 
@@ -50,10 +72,6 @@ Example input:
 
 ### Part 1
 
-Within each pair, figure out how far apart the two numbers are; you'll need to add up all of those distances. For example, if you pair up a 3 from the left list with a 7 from the right list, the distance apart is 4; if you pair up a 9 with a 3, the distance apart is 6.
-
-To find the total distance between the left list and the right list, add up the distances between all of the pairs you found. In the example above, this is 2 + 1 + 0 + 1 + 2 + 5, a total distance of 11!
-
 <details>
   <summary>Script</summary>
 
@@ -71,10 +89,6 @@ var b = payload.column_3 orderBy $
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday1%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ### Part 2
-
-This time, you'll need to figure out exactly how often each number from the left list appears in the right list. Calculate a total similarity score by adding up each number in the left list after multiplying it by the number of times that number appears in the right list.
-
-So, for these example lists, the similarity score at the end of this process is 31 (9 + 4 + 0 + 0 + 9 + 9).
 
 <details>
   <summary>Script</summary>
@@ -109,13 +123,6 @@ Example input:
 ```
 
 ### Part 1
-
-The engineers are trying to figure out which reports are safe. The Red-Nosed reactor safety systems can only tolerate levels that are either gradually increasing or gradually decreasing. So, a report only counts as safe if both of the following are true:
-
-- The levels are either all increasing or all decreasing.
-- Any two adjacent levels differ by at least one and at most three.
-
-So, in this example, 2 reports are safe.
 
 <details>
   <summary>Script</summary>
@@ -156,10 +163,6 @@ var increasing = "increasing"
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday2%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ### Part 2
-
-Now, the same rules apply as before, except if removing a single level from an unsafe report would make it safe, the report instead counts as safe.
-
-Thanks to the Problem Dampener, 4 reports are actually safe!
 
 > *Horrible code. But I did what I had to do :(*
 
@@ -248,12 +251,6 @@ xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))
 
 ### Part 1
 
-It seems like the goal of the program is just to multiply some numbers. It does that with instructions like mul(X,Y), where X and Y are each 1-3 digit numbers. For instance, mul(44,46) multiplies 44 by 46 to get a result of 2024. Similarly, mul(123,4) would multiply 123 by 4.
-
-However, because the program's memory has been corrupted, there are also many invalid characters that should be ignored, even if they look like part of a mul instruction. Sequences like mul(4*, mul(6,9!, ?(12,34), or mul ( 2 , 4 ) do nothing.
-
-Adding up the result of each instruction produces 161 (2*4 + 5*5 + 11*8 + 8*5).
-
 <details>
   <summary>Script</summary>
 
@@ -269,15 +266,6 @@ Adding up the result of each instruction produces 161 (2*4 + 5*5 + 11*8 + 8*5).
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday3%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ### Part 2
-
-There are two new instructions you'll need to handle:
-
-- The do() instruction enables future mul instructions.
-- The don't() instruction disables future mul instructions.
-
-Only the most recent do() or don't() instruction applies. At the beginning of the program, mul instructions are enabled.
-
-This time, the sum of the results is 48 `(2*4 + 8*5)`.
 
 <details>
   <summary>Script</summary>
@@ -307,7 +295,7 @@ This time, the sum of the results is 48 `(2*4 + 8*5)`.
 
 Challenge: [Ceres Search](https://adventofcode.com/2024/day/4)
 
-Example input:
+Example inputs:
 
 ```
 MMMSXXMASM
@@ -322,13 +310,13 @@ MAMMMXMMMM
 MXMXAXMASX
 ```
 
+```
+M.S
+.A.
+M.S
+```
+
 ### Part 1
-
-As the search for the Chief continues, a small Elf who lives on the station tugs on your shirt; she'd like to know if you could help her with her word search (your puzzle input). She only has to find one word: XMAS.
-
-This word search allows words to be horizontal, vertical, diagonal, written backwards, or even overlapping other words. It's a little unusual, though, as you don't merely need to find one instance of XMAS - you need to find all of them.
-
-In this word search, XMAS occurs a total of 18 times.
 
 <details>
   <summary>Script</summary>
@@ -369,18 +357,6 @@ flatten
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday4%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ### Part 2
-
-The Elf looks quizzically at you. Did you misunderstand the assignment?
-
-Looking for the instructions, you flip over the word search to find that this isn't actually an XMAS puzzle; it's an X-MAS puzzle in which you're supposed to find two MAS in the shape of an X. One way to achieve that is like this:
-
-```
-M.S
-.A.
-M.S
-```
-
-In this example, an X-MAS appears 9 times.
 
 <details>
   <summary>Script</summary>
@@ -450,14 +426,6 @@ Example input:
 
 ### Part 1
 
-The first section specifies the page ordering rules, one per line. The first rule, 47|53, means that if an update includes both page number 47 and page number 53, then page number 47 must be printed at some point before page number 53. (47 doesn't necessarily need to be immediately before 53; other pages are allowed to be between them.)
-
-The second section specifies the page numbers of each update. Because most safety manuals are different, the pages needed in the updates are different too. The first update, 75,47,61,53,29, means that the update consists of page numbers 75, 47, 61, 53, and 29.
-
-For some reason, the Elves also need to know the middle page number of each update being printed. Because you are currently only printing the correctly-ordered updates, you will need to find the middle page number of each correctly-ordered update.
-
-These have middle page numbers of 61, 53, and 29 respectively. Adding these page numbers together gives 143.
-
 <details>
   <summary>Script</summary>
 
@@ -488,13 +456,7 @@ updatesLines map ((line, lineidx) -> do {
 
 ### Part 2 (unsolved)
 
-For each of the incorrectly-ordered updates, use the page ordering rules to put the page numbers in the right order. For the above example, here are the three incorrectly-ordered updates and their correct orderings:
-
-- 75,97,47,61,53 becomes 97,75,47,61,53.
-- 61,13,29 becomes 61,29,13.
-- 97,13,75,29,47 becomes 97,75,47,29,13.
-
-After taking only the incorrectly-ordered updates and ordering them correctly, their middle page numbers are 47, 29, and 47. Adding these together produces 123.
+tbd
 
 ## 🔹 Day 6
 
@@ -516,15 +478,6 @@ Example input:
 ```
 
 ### Part 1
-
-The map shows the current position of the guard with ^ (to indicate the guard is currently facing up from the perspective of the map). Any obstructions - crates, desks, alchemical reactors, etc. - are shown as #.
-
-Lab guards in 1518 follow a very strict patrol protocol which involves repeatedly following these steps:
-
-- If there is something directly in front of you, turn right 90 degrees.
-- Otherwise, take a step forward.
-
-In this example, the guard will visit 41 distinct positions on your map.
 
 <details>
   <summary>Script</summary>
@@ -578,13 +531,7 @@ sizeOf(getRoute(matrix) distinctBy $)
 
 ### Part 2 (unsolved)
 
-Adding a single new obstruction won't cause a time paradox. They'd like to place the new obstruction in such a way that the guard will get stuck in a loop, making the rest of the lab safe to search.
-
-To have the lowest chance of creating a time paradox, The Historians would like to know all of the possible positions for such an obstruction. The new obstruction can't be placed at the guard's starting position - the guard is there right now and would notice.
-
-In the above example, there are only 6 different positions where a new obstruction would cause the guard to get stuck in a loop.
-
-You need to get the guard stuck in a loop by adding a single new obstruction. How many different positions could you choose for this obstruction?
+tbd
 
 ## 🔹 Day 7
 
@@ -605,16 +552,6 @@ Example input:
 ```
 
 ### Part 1
-
-Operators are always evaluated left-to-right, not according to precedence rules. Furthermore, numbers in the equations cannot be rearranged. Glancing into the jungle, you can see elephants holding two different types of operators: add (+) and multiply (*).
-
-Only three of the above equations can be made true by inserting operators:
-
-- 190: 10 19 has only one position that accepts an operator: between 10 and 19. Choosing + would give 29, but choosing * would give the test value (10 * 19 = 190).
-- 3267: 81 40 27 has two positions for operators. Of the four possible configurations of the operators, two cause the right side to match the test value: 81 + 40 * 27 and 81 * 40 + 27 both equal 3267 (when evaluated left-to-right)!
-- 292: 11 6 16 20 can be solved in exactly one way: 11 + 6 * 16 + 20.
-
-The engineers just need the total calibration result, which is the sum of the test values from just the equations that could possibly be true. In the above example, the sum of the test values for the three equations listed above is 3749.
 
 <details>
   <summary>Script</summary>
@@ -647,16 +584,6 @@ lines(payload) map ((equation, equationIndex) -> do {
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday7%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ### Part 2
-
-The concatenation operator (||) combines the digits from its left and right inputs into a single number. For example, 12 || 345 would become 12345. All operators are still evaluated left-to-right.
-
-Now, apart from the three equations that could be made true using only addition and multiplication, the above example has three more equations that can be made true by inserting operators:
-
-- 156: 15 6 can be made true through a single concatenation: 15 || 6 = 156.
-- 7290: 6 8 6 15 can be made true using 6 * 8 || 6 * 15.
-- 192: 17 8 14 can be made true using 17 || 8 + 14.
-
-Adding up all six test values (the three that could be made before using only + and * plus the new three that can now be made by also using ||) produces the new total calibration result of 11387.
 
 <details>
   <summary>Script</summary>
@@ -710,14 +637,6 @@ Example input:
 ```
 
 ### Part 1
-
-Scanning across the city, you find that there are actually many such antennas. Each antenna is tuned to a specific frequency indicated by a single lowercase letter, uppercase letter, or digit.
-
-The signal only applies its nefarious effect at specific antinodes based on the resonant frequencies of the antennas. In particular, an antinode occurs at any point that is perfectly in line with two antennas of the same frequency - but only when one of the antennas is twice as far away as the other. This means that for any pair of antennas with the same frequency, there are two antinodes, one on either side of them.
-
-Because the topmost A-frequency antenna overlaps with a 0-frequency antinode, there are 14 total unique locations that contain an antinode within the bounds of the map.
-
-How many unique locations within the bounds of the map contain an antinode?
 
 <details>
   <summary>Script</summary>
@@ -786,10 +705,6 @@ then sizeOf($)
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday8%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ### Part 2
-
-After updating your model, it turns out that an antinode occurs at any grid position exactly in line with at least two antennas of the same frequency, regardless of distance. This means that some of the new antinodes will occur at the position of each antenna (unless that antenna is the only one of its frequency).
-
-The original example now has 34 antinodes, including the antinodes that appear on every antenna.
 
 <details>
   <summary>Script</summary>
@@ -874,12 +789,6 @@ Example input:
 
 ### Part 1
 
-The disk map uses a dense format to represent the layout of files and free space on the disk. The digits alternate between indicating the length of a file and the length of free space.
-
-So, a disk map like 12345 would represent a one-block file, two blocks of free space, a three-block file, four blocks of free space, and then a five-block file. A disk map like 90909 would represent three nine-block files in a row (with no free space between them).
-
-Each file on disk also has an ID number based on the order of the files as they appear before they are rearranged, starting with ID 0. So, the disk map 12345 has three files: a one-block file with ID 0, a three-block file with ID 1, and a five-block file with ID 2.
-
 <details>
   <summary>Script</summary>
 
@@ -911,11 +820,7 @@ thisthing.r[0 to thisthing.idx] map ($*$$) then sum($)
 
 ### Part 2 (unsolved)
 
-The eager amphipod already has a new plan: rather than move individual blocks, he'd like to try compacting the files on his disk by moving whole files instead.
-
-This time, attempt to move whole files to the leftmost span of free space blocks that could fit the file. Attempt to move each file exactly once in order of decreasing file ID number starting with the file with the highest file ID number. If there is no span of free space to the left of a file that is large enough to fit the file, the file does not move.
-
-The process of updating the filesystem checksum is the same; now, this example's checksum would be 2858.
+tbd
 
 ## 🔹 Day 10
 
@@ -935,12 +840,6 @@ Example input:
 ```
 
 ### Part 1
-
-The topographic map indicates the height at each position using a scale from 0 (lowest) to 9 (highest).
-
-Based on un-scorched scraps of the book, you determine that a good hiking trail is as long as possible and has an even, gradual, uphill slope. For all practical purposes, this means that a hiking trail is any path that starts at height 0, ends at height 9, and always increases by a height of exactly 1 at each step. Hiking trails never include diagonal steps - only up, down, left, or right (from the perspective of the map).
-
-This larger example has 9 trailheads. Considering the trailheads in reading order, they have scores of 5, 6, 5, 3, 1, 3, 5, 3, and 5. Adding these scores together, the sum of the scores of all trailheads is 36.
 
 <details>
   <summary>Script</summary>
@@ -976,10 +875,6 @@ flatten(lines map ((line, lineidx) ->
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday10%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ### Part 2
-
-The paper describes a second way to measure a trailhead called its rating. A trailhead's rating is the number of distinct hiking trails which begin at that trailhead. 
-
-Considering its trailheads in reading order, they have ratings of 20, 24, 10, 4, 1, 4, 5, 8, and 5. The sum of all trailhead ratings in this larger example topographic map is 81.
 
 <details>
   <summary>Script</summary>
@@ -1045,22 +940,6 @@ After 6 blinks:
 
 ### Part 1
 
-At first glance, they seem like normal stones: they're arranged in a perfectly straight line, and each stone has a number engraved on it.
-
-The strange part is that every time you blink, the stones change.
-
-Sometimes, the number engraved on a stone changes. Other times, a stone might split in two, causing all the other stones to shift over a bit to make room in their perfectly straight line.
-
-As you observe them for a while, you find that the stones have a consistent behavior. Every time you blink, the stones each simultaneously change according to the first applicable rule in this list:
-
-- If the stone is engraved with the number 0, it is replaced by a stone engraved with the number 1.
-- If the stone is engraved with a number that has an even number of digits, it is replaced by two stones. The left half of the digits are engraved on the new left stone, and the right half of the digits are engraved on the new right stone. (The new numbers don't keep extra leading zeroes: 1000 would become stones 10 and 0.)
-- If none of the other rules apply, the stone is replaced by a new stone; the old stone's number multiplied by 2024 is engraved on the new stone.
-
-No matter how the stones change, their order is preserved, and they stay on their perfectly straight line.
-
-In this example, after blinking six times, you would have 22 stones. After blinking 25 times, you would have 55312 stones!
-
 <details>
   <summary>Script</summary>
 
@@ -1089,10 +968,6 @@ sizeOf((payload splitBy " ") blinkTimes 25)
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday11%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ### Part 2
-
-The Historians sure are taking a long time. To be fair, the infinite corridors are very large.
-
-How many stones would you have after blinking a total of 75 times?
 
 <details>
   <summary>Script</summary>
@@ -1144,12 +1019,6 @@ then sum(valuesOf($))
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday11%2Fpart2"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2 (unsolved)
-
-The Historians sure are taking a long time. To be fair, the infinite corridors are very large.
-
-How many stones would you have after blinking a total of 75 times?
-
 ## 🔹 Day 12
 
 Challenge: [Garden Groups](https://adventofcode.com/2024/day/12)
@@ -1168,32 +1037,6 @@ MIIIIIJJEE
 MIIISIJEEE
 MMMISSJEEE
 ```
-
-### Part 1 (unsolved)
-
-Each garden plot grows only a single type of plant and is indicated by a single letter on your map. When multiple garden plots are growing the same type of plant and are touching (horizontally or vertically), they form a region.
-
-In order to accurately calculate the cost of the fence around a single region, you need to know that region's area and perimeter.
-
-The area of a region is simply the number of garden plots the region contains. The perimeter of a region is the number of sides of garden plots in the region that do not touch another garden plot in the same region.
-
-Due to "modern" business practices, the price of fence required for a region is found by multiplying that region's area by its perimeter.
-
-It contains:
-
-- A region of R plants with price 12 * 18 = 216.
-- A region of I plants with price 4 * 8 = 32.
-- A region of C plants with price 14 * 28 = 392.
-- A region of F plants with price 10 * 18 = 180.
-- A region of V plants with price 13 * 20 = 260.
-- A region of J plants with price 11 * 20 = 220.
-- A region of C plants with price 1 * 4 = 4.
-- A region of E plants with price 13 * 18 = 234.
-- A region of I plants with price 14 * 22 = 308.
-- A region of M plants with price 5 * 12 = 60.
-- A region of S plants with price 3 * 8 = 24.
-
-So, it has a total price of 1930.
 
 ## 🔹 Day 19
 
@@ -1215,21 +1058,6 @@ bbrgwb
 ```
 
 ### Part 1
-
-The first line indicates the available towel patterns. After the blank line, the remaining lines each describe a design the onsen would like to be able to display.
-
-Not all designs will be possible with the available towels. In the above example, the designs are possible or impossible as follows:
-
-- brwrr can be made with a br towel, then a wr towel, and then finally an r towel.
-- bggr can be made with a b towel, two g towels, and then an r towel.
-- gbbr can be made with a gb towel and then a br towel.
-- rrbgbr can be made with r, rb, g, and br.
-- ubwu is impossible.
-- bwurrg can be made with bwu, r, r, and g.
-- brgr can be made with br, g, and r.
-- bbrgwb is impossible.
-
-In this example, 6 of the eight designs are possible with the available towel patterns.
 
 <details>
   <summary>Script</summary>
@@ -1267,35 +1095,7 @@ fun checkDesign(initialDesign:String, currentDesign:String, acc="") = do {
 
 ### Part 2 (unsolved)
 
-Here are all of the different ways the above example's designs can be made:
-
-- brwrr can be made in two different ways: b, r, wr, r or br, wr, r.
-
-- bggr can only be made with b, g, g, and r.
-
-- gbbr can be made 4 different ways:
-
-    - g, b, b, r
-    - g, b, br
-    - gb, b, r
-    - gb, br
-
-- rrbgbr can be made 6 different ways:
-
-    - r, r, b, g, b, r
-    - r, r, b, g, br
-    - r, r, b, gb, r
-    - r, rb, g, b, r
-    - r, rb, g, br
-    - r, rb, gb, r
-
-- bwurrg can only be made with bwu, r, r, and g.
-
-- brgr can be made in two different ways: b, r, g, r or br, g, r.
-
-- ubwu and bbrgwb are still impossible.
-
-Adding up all of the ways the towels in this example could be arranged into the desired designs yields 16 (2 + 1 + 4 + 6 + 1 + 2).
+tbd
 
 ## 🔹 Day 23
 
@@ -1340,14 +1140,6 @@ td-yn
 
 ### Part 1
 
-The network map provides a list of every connection between two computers.
-
-Each line of text in the network map represents a single connection; the line kh-tc represents a connection between the computer named kh and the computer named tc. Connections aren't directional; tc-kh would mean exactly the same thing.
-
-Start by looking for sets of three computers where each computer in the set is connected to the other two computers.
-
-Find all the sets of three inter-connected computers. How many contain at least one computer with a name that starts with t? The answer is 7.
-
 <details>
   <summary>Script</summary>
 
@@ -1379,13 +1171,7 @@ sizeOf(matches)
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday23%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2 
-
-Since it doesn't seem like any employees are around, you figure they must all be at the LAN party. If that's true, the LAN party will be the largest set of computers that are all connected to each other. That is, for each computer at the LAN party, that computer will have a connection to every other computer at the LAN party.
-
-In the above example, the largest set of computers that are all connected to each other is made up of co, de, ka, and ta. Each computer in this set has a connection to every other computer in the set.
-
-The LAN party posters say that the password to get into the LAN party is the name of every computer at the LAN party, sorted alphabetically, then joined together with commas. (The people running the LAN party are clearly a bunch of nerds.) In this example, the password would be co,de,ka,ta.
+### Part 2
 
 <details>
   <summary>Script</summary>
@@ -1479,14 +1265,6 @@ tnw OR pbm -> gnj
 
 ### Part 1
 
-The device seems to be trying to produce a number through some boolean logic gates. Each gate has two inputs and one output. The gates all operate on values that are either true (1) or false (0).
-
-- AND gates output 1 if both inputs are 1; if either input is 0, these gates output 0.
-- OR gates output 1 if one or both inputs is 1; if both inputs are 0, these gates output 0.
-- XOR gates output 1 if the inputs are different; if the inputs are the same, these gates output 0.
-
-Combining the bits from all wires starting with z produces the binary number 0011111101000. Converting this number to decimal produces 2024.
-
 <details>
   <summary>Script</summary>
 
@@ -1544,7 +1322,7 @@ then fromBinary(valuesOf($)[-1 to 0] joinBy "")
 
 ### Part 2 (unsolved)
 
-(explanation is too long and confusing x-x it's easier to refer to the website)
+tbd
 
 ## 🔹 Day 25
 
@@ -1595,32 +1373,6 @@ Example input:
 ```
 
 ### Part 1 
-
-The locks are schematics that have the top row filled (#) and the bottom row empty (.); the keys have the top row empty and the bottom row filled. If you look closely, you'll see that each schematic is actually a set of columns of various heights, either extending downward from the top (for locks) or upward from the bottom (for keys).
-
-For locks, those are the pins themselves; you can convert the pins in schematics to a list of heights, one per column. For keys, the columns make up the shape of the key where it aligns with pins; those can also be converted to a list of heights.
-
-In this example, converting both locks to pin heights produces:
-
-- 0,5,3,4,3
-- 1,2,0,5,3
-
-Converting all three keys to heights produces:
-
-- 5,0,2,1,3
-- 4,3,4,0,2
-- 3,0,2,0,1
-
-Then, you can try every key with every lock:
-
-- Lock 0,5,3,4,3 and key 5,0,2,1,3: overlap in the last column.
-- Lock 0,5,3,4,3 and key 4,3,4,0,2: overlap in the second column.
-- Lock 0,5,3,4,3 and key 3,0,2,0,1: all columns fit!
-- Lock 1,2,0,5,3 and key 5,0,2,1,3: overlap in the first column.
-- Lock 1,2,0,5,3 and key 4,3,4,0,2: all columns fit!
-- Lock 1,2,0,5,3 and key 3,0,2,0,1: all columns fit!
-
-So, in this example, the number of unique lock/key pairs that fit together without overlapping in any column is 3.
 
 <details>
   <summary>Script</summary>
