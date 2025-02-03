@@ -30,7 +30,7 @@ If there's no input, just remove the `-i payload=<file>` part.
 
 Total stars: ⭐️ 24 / 50 
 
-![](https://progress-bar.xyz/24?width=200&scale=50&suffix=+stars)
+![](https://progress-bar.xyz/24?width=500&scale=50&suffix=+stars)
 
 - ⭐️⭐️ [Day 1](#-day-1)
 - ⭐️⭐️ [Day 2](#-day-2)
