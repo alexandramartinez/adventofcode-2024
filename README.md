@@ -31,9 +31,9 @@ You can filter the challenges using one of the following keywords (ctrl+F or cmd
 
 ## Table of Contents
 
-Total stars: ⭐️ 28 / 50 
+Total stars: ⭐️ 29 / 50 
 
-![](https://progress-bar.xyz/56?width=500)
+![](https://progress-bar.xyz/58?width=500)
 
 - ⭐️⭐️ [Day 1](#-day-1)
 - ⭐️⭐️ [Day 2](#-day-2)
@@ -48,7 +48,7 @@ Total stars: ⭐️ 28 / 50
 - ⭐️⭐️ [Day 11](#-day-11)
 - ⭐️⭐️ [Day 12](#-day-12)
 - ⭐️⭐️ [Day 13](#-day-13)
-- Day 14
+- ⭐️ [Day 14](#-day-14)
 - Day 15
 - Day 16
 - Day 17
@@ -1391,6 +1391,88 @@ then sum($)
 </details>
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday13%2Fpart2"><img width="300" src="/images/dwplayground-button.png"><a>
+
+## 🔹 Day 14
+
+- Challenge: [Restroom Redoubt](https://adventofcode.com/2024/day/14)
+- Keywords: `math`, `strings`, `lines`, `recursive`
+- Example input:
+
+```
+p=0,4 v=3,-3
+p=6,3 v=-1,-3
+p=10,3 v=-1,2
+p=2,0 v=2,-1
+p=0,0 v=1,3
+p=3,0 v=-2,-2
+p=7,6 v=-1,-3
+p=3,0 v=-1,-2
+p=9,3 v=2,3
+p=7,3 v=-1,2
+p=2,4 v=2,-3
+p=9,5 v=-3,-3
+```
+
+### Part 1
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+output application/json
+var robots = payload splitBy "\n"
+var WIDTH = 101
+var HEIGHT = 103
+var SECONDS = 100
+var widthMiddle = floor(WIDTH/2)
+var heightMiddle = floor(HEIGHT/2)
+type Coords = {
+    x:Number,
+    y:Number
+}
+fun stringToCoord(str:String):Coords = do {
+    var split = str splitBy ","
+    ---
+    {x:split[0] as Number, y:split[1] as Number}
+}
+fun moveRobot(position:Coords,velocity:Coords):Coords = do {
+    var x = position.x + velocity.x
+    var y = position.y + velocity.y
+    ---
+    {
+        x: if (x > WIDTH-1) x-WIDTH 
+            else if (x < 0) WIDTH+x
+            else x,
+        y: if (y > HEIGHT-1) y-HEIGHT
+            else if (y < 0) HEIGHT+y
+            else y
+    }
+}
+@TailRec()
+fun moveRobotXTimes(position:Coords,velocity:Coords,times=SECONDS):Coords = do {
+    times match {
+        case 0 -> position
+        else -> moveRobotXTimes(
+            moveRobot(position, velocity), velocity, times-1
+        )
+    }
+}
+var robotsAfterMoving = robots map ((robot) -> do {
+    var split = robot splitBy " "
+    var position = stringToCoord(split[0][2 to -1])
+    var velocity = stringToCoord(split[-1][2 to -1])
+    ---
+    moveRobotXTimes(position,velocity)
+})
+---
+sizeOf(robotsAfterMoving filter (($.x < widthMiddle) and ($.y < heightMiddle)))
+* sizeOf(robotsAfterMoving filter (($.x > widthMiddle) and ($.y < heightMiddle)))
+* sizeOf(robotsAfterMoving filter (($.x < widthMiddle) and ($.y > heightMiddle)))
+* sizeOf(robotsAfterMoving filter (($.x > widthMiddle) and ($.y > heightMiddle)))
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday14%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ## 🔹 Day 19
 
