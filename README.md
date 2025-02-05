@@ -1316,6 +1316,8 @@ Prize: X=18641, Y=10279
 
 ### Part 1
 
+> To be completely honest, I didn't solve this one myself cause I was trying to make huge Trees and I realized it was impossible. So, I googled and ended up [here](https://dev.to/grantdotdev/advent-of-code-24-day-13-claw-contraption-n2p). Tysm Grant! ✨
+
 <details>
   <summary>Script</summary>
 
