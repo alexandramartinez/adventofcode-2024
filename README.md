@@ -31,9 +31,9 @@ You can filter the challenges using one of the following keywords (ctrl+F or cmd
 
 ## Table of Contents
 
-Total stars: ⭐️ 24 / 50 
+Total stars: ⭐️ 25 / 50 
 
-![](https://progress-bar.xyz/24?width=500&scale=50&suffix=+stars)
+![](https://progress-bar.xyz/25?width=500&scale=50&suffix=+stars)
 
 - ⭐️⭐️ [Day 1](#-day-1)
 - ⭐️⭐️ [Day 2](#-day-2)
@@ -172,7 +172,7 @@ var increasing = "increasing"
 
 ### Part 2
 
-> *Horrible code. But I did what I had to do :(*
+> Horrible code. But I did what I had to do :(
 
 <details>
   <summary>Script</summary>
