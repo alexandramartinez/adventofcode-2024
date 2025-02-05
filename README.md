@@ -31,9 +31,9 @@ You can filter the challenges using one of the following keywords (ctrl+F or cmd
 
 ## Table of Contents
 
-Total stars: ⭐️ 27 / 50 
+Total stars: ⭐️ 28 / 50 
 
-![](https://progress-bar.xyz/54?width=500)
+![](https://progress-bar.xyz/56?width=500)
 
 - ⭐️⭐️ [Day 1](#-day-1)
 - ⭐️⭐️ [Day 2](#-day-2)
@@ -47,7 +47,7 @@ Total stars: ⭐️ 27 / 50
 - ⭐️⭐️ [Day 10](#-day-10)
 - ⭐️⭐️ [Day 11](#-day-11)
 - ⭐️⭐️ [Day 12](#-day-12)
-- ⭐️ [Day 13](#-day-13)
+- ⭐️⭐️ [Day 13](#-day-13)
 - Day 14
 - Day 15
 - Day 16
@@ -1352,6 +1352,45 @@ then sum($)
 </details>
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday13%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
+
+### Part 2
+
+> Exact same code as part 1, only adding `+ 10000000000000` to both `x` and `y` fields from `var prize`
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+output application/json
+var machines = payload splitBy "\n\n"
+---
+machines map ((machine) -> do {
+    var split = machine splitBy "\n"
+    var prize = {
+        x: (split[-1] splitBy " ")[1][2 to -2] as Number + 10000000000000,
+        y: (split[-1] splitBy " ")[-1][2 to -1] as Number + 10000000000000
+    }
+    var buttonA = {
+        x: (split[0] splitBy " ")[-2][2 to -2] as Number,
+        y: (split[0] splitBy " ")[-1][2 to -1] as Number
+    }
+    var buttonB = {
+        x: (split[1] splitBy " ")[-2][2 to -2] as Number,
+        y: (split[1] splitBy " ")[-1][2 to -1] as Number
+    }
+    var D = (buttonA.x * buttonB.y) - (buttonA.y * buttonB.x)
+    var Dx = (prize.x * buttonB.y) - (prize.y * buttonB.x)
+    var Dy = (buttonA.x * prize.y) - (buttonA.y * prize.x)
+    var A = Dx / D
+    var B = Dy / D
+    ---
+    (if (isInteger(A)) A * 3 else 0) + (if (isInteger(B)) B else 0)
+})
+then sum($)
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday13%2Fpart2"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ## 🔹 Day 19
 
