@@ -33,7 +33,7 @@ You can filter the challenges using one of the following keywords (ctrl+F or cmd
 
 Total stars: ⭐️ 25 / 50 
 
-![](https://progress-bar.xyz/25?width=500&scale=50&suffix=+stars)
+![](https://progress-bar.xyz/50?width=500)
 
 - ⭐️⭐️ [Day 1](#-day-1)
 - ⭐️⭐️ [Day 2](#-day-2)
