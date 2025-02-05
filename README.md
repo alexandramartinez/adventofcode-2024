@@ -31,9 +31,9 @@ You can filter the challenges using one of the following keywords (ctrl+F or cmd
 
 ## Table of Contents
 
-Total stars: ⭐️ 25 / 50 
+Total stars: ⭐️ 27 / 50 
 
-![](https://progress-bar.xyz/52?width=500)
+![](https://progress-bar.xyz/54?width=500)
 
 - ⭐️⭐️ [Day 1](#-day-1)
 - ⭐️⭐️ [Day 2](#-day-2)
@@ -47,7 +47,7 @@ Total stars: ⭐️ 25 / 50
 - ⭐️⭐️ [Day 10](#-day-10)
 - ⭐️⭐️ [Day 11](#-day-11)
 - ⭐️⭐️ [Day 12](#-day-12)
-- Day 13
+- ⭐️ [Day 13](#-day-13)
 - Day 14
 - Day 15
 - Day 16
@@ -1289,6 +1289,67 @@ then sum($)
 </details>
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday12%2Fpart2"><img width="300" src="/images/dwplayground-button.png"><a>
+
+## 🔹 Day 13
+
+- Challenge: [Claw Contraption](https://adventofcode.com/2024/day/13)
+- Keywords: `math`, `strings`, `lines`
+- Example input:
+
+```
+Button A: X+94, Y+34
+Button B: X+22, Y+67
+Prize: X=8400, Y=5400
+
+Button A: X+26, Y+66
+Button B: X+67, Y+21
+Prize: X=12748, Y=12176
+
+Button A: X+17, Y+86
+Button B: X+84, Y+37
+Prize: X=7870, Y=6450
+
+Button A: X+69, Y+23
+Button B: X+27, Y+71
+Prize: X=18641, Y=10279
+```
+
+### Part 1
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+output application/json
+var machines = payload splitBy "\n\n"
+---
+machines map ((machine) -> do {
+    var split = machine splitBy "\n"
+    var prize = {
+        x: (split[-1] splitBy " ")[1][2 to -2] as Number,
+        y: (split[-1] splitBy " ")[-1][2 to -1] as Number
+    }
+    var buttonA = {
+        x: (split[0] splitBy " ")[-2][2 to -2] as Number,
+        y: (split[0] splitBy " ")[-1][2 to -1] as Number
+    }
+    var buttonB = {
+        x: (split[1] splitBy " ")[-2][2 to -2] as Number,
+        y: (split[1] splitBy " ")[-1][2 to -1] as Number
+    }
+    var D = (buttonA.x * buttonB.y) - (buttonA.y * buttonB.x)
+    var Dx = (prize.x * buttonB.y) - (prize.y * buttonB.x)
+    var Dy = (buttonA.x * prize.y) - (buttonA.y * prize.x)
+    var A = Dx / D
+    var B = Dy / D
+    ---
+    (if (isInteger(A)) A * 3 else 0) + (if (isInteger(B)) B else 0)
+})
+then sum($)
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday13%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ## 🔹 Day 19
 
