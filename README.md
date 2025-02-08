@@ -1048,7 +1048,7 @@ MMMISSJEEE
 
 ### ⭐️ Part 1
 
-> Ran with the full input in the DW CLI online [here](https://github.com/alexandramartinez/dwcli-github-actions/actions/runs/13143859945). Took less than 4 min. Not my best code :')
+Ran with the full input in the DW CLI online [here](https://github.com/alexandramartinez/dwcli-github-actions/actions/runs/13143859945). Took less than 4 min. Not my best code :')
 
 <details>
   <summary>Script</summary>
@@ -1147,9 +1147,9 @@ then sum($)
 
 ### ⭐️⭐️ Part 2
 
-> Got some help from [reddit](https://www.reddit.com/r/adventofcode/comments/1hcpyic/comment/m1q1nrj/) and ended up using the DFS algorithm mentioned there. The corner trick was amazing!
-> I'm sure my code can be made way simpler but this was the first code that worked, so I just decided to leave it like that even if it's not the best :)
-> Same as part 1, had to run this code with the full input in the DW CLI online [here](https://github.com/alexandramartinez/dwcli-github-actions/actions/runs/13160831089/). Took less than 4 min to run!
+Got some help from [reddit](https://www.reddit.com/r/adventofcode/comments/1hcpyic/comment/m1q1nrj/) and ended up using the DFS algorithm mentioned there. The corner trick was amazing!
+I'm sure my code can be made way simpler but this was the first code that worked, so I just decided to leave it like that even if it's not the best :)
+Same as part 1, had to run this code with the full input in the DW CLI online [here](https://github.com/alexandramartinez/dwcli-github-actions/actions/runs/13160831089/). Took less than 4 min to run!
 
 <details>
   <summary>Script</summary>
