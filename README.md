@@ -1413,7 +1413,7 @@ p=2,4 v=2,-3
 p=9,5 v=-3,-3
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -1474,7 +1474,7 @@ sizeOf(robotsAfterMoving filter (($.x < widthMiddle) and ($.y < heightMiddle)))
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday14%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2
+### ⭐️⭐️ Part 2
 
 omg this one was so interesting and fun!!! I ran this one in the DW CLI online [here](https://github.com/alexandramartinez/dwcli-github-actions/actions/runs/13209666287) - it took 33 minutes to finish!
 
@@ -1558,7 +1558,7 @@ keepMovingRobots(robots)
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday14%2Fpart2"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2 - Spoiler/Second Script
+### ⭐️⭐️ Part 2 - Spoiler/Second Script
 
 <details>
   <summary>SPOILER!!!</summary>
