@@ -1476,8 +1476,7 @@ sizeOf(robotsAfterMoving filter (($.x < widthMiddle) and ($.y < heightMiddle)))
 
 ### Part 2
 
-> omg this one was so interesting and fun!!! 
-> I ran this one in the DW CLI online [here](https://github.com/alexandramartinez/dwcli-github-actions/actions/runs/13209666287) - it took 33 minutes to finish!
+omg this one was so interesting and fun!!! I ran this one in the DW CLI online [here](https://github.com/alexandramartinez/dwcli-github-actions/actions/runs/13209666287) - it took 33 minutes to finish!
 
 <details>
   <summary>Script</summary>
@@ -1559,7 +1558,7 @@ keepMovingRobots(robots)
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday14%2Fpart2"><img width="300" src="/images/dwplayground-button.png"><a>
 
-</br>
+### Part 2 - Spoiler/Second Script
 
 <details>
   <summary>SPOILER!!!</summary>
@@ -1571,8 +1570,6 @@ Here's the cool pic i got!
 ![tree](/images/day14tree.png)
 
 </details>
-
-</br>
 
 You can check the output with the following script. Just change the `SECONDS` variable.
 
