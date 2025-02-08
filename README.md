@@ -172,7 +172,7 @@ var increasing = "increasing"
 
 ### ⭐️⭐️ Part 2
 
-> Horrible code. But I did what I had to do :(
+Horrible code. But I did what I had to do :(
 
 <details>
   <summary>Script</summary>
