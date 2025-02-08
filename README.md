@@ -31,9 +31,9 @@ You can filter the challenges using one of the following keywords (ctrl+F or cmd
 
 ## Table of Contents
 
-Total stars: ⭐️ 29 / 50 
+Total stars: ⭐️ 30 / 50 
 
-![](https://progress-bar.xyz/58?width=500)
+![](https://progress-bar.xyz/60?width=500)
 
 - ⭐️⭐️ [Day 1](#-day-1)
 - ⭐️⭐️ [Day 2](#-day-2)
@@ -48,7 +48,7 @@ Total stars: ⭐️ 29 / 50
 - ⭐️⭐️ [Day 11](#-day-11)
 - ⭐️⭐️ [Day 12](#-day-12)
 - ⭐️⭐️ [Day 13](#-day-13)
-- ⭐️ [Day 14](#-day-14)
+- ⭐️⭐️ [Day 14](#-day-14)
 - Day 15
 - Day 16
 - Day 17
@@ -1473,6 +1473,167 @@ sizeOf(robotsAfterMoving filter (($.x < widthMiddle) and ($.y < heightMiddle)))
 </details>
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday14%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
+
+### Part 2
+
+> omg this one was so interesting and fun!!! 
+> I ran this one in the DW CLI online [here](https://github.com/alexandramartinez/dwcli-github-actions/actions/runs/13209666287) - it took 33 minutes to finish!
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+output application/json
+import countBy from dw::core::Arrays
+var lines = payload splitBy "\n"
+var WIDTH = 101
+var HEIGHT = 103
+type Coords = {
+    x:Number,
+    y:Number
+}
+type Robot = {
+    position: Coords,
+    velocity: Coords
+}
+type Direction = "left" | "up" | "down" | "right"
+fun stringToCoord(str:String):Coords = do {
+    var split = str splitBy ","
+    ---
+    {x:split[0] as Number, y:split[1] as Number}
+}
+fun moveRobot(robot:Robot):Coords = do {
+    var x = robot.position.x + robot.velocity.x
+    var y = robot.position.y + robot.velocity.y
+    ---
+    {
+        x: if (x > WIDTH-1) x-WIDTH 
+            else if (x < 0) WIDTH+x
+            else x,
+        y: if (y > HEIGHT-1) y-HEIGHT
+            else if (y < 0) HEIGHT+y
+            else y
+    }
+}
+fun getNewCoords(from:Coords, direction:Direction):Coords = direction match {
+    case "left" -> {x: from.x-1, y:from.y}
+    case "right" -> {x: from.x+1, y:from.y}
+    case "up" -> {x: from.x, y: from.y-1}
+    case "down" -> {x: from.x, y: from.y+1}
+}
+fun areMostTouchingOthers(arr):Boolean = do {
+    ((arr map ((item) -> 
+        (arr contains getNewCoords(item,"left"))
+        or (arr contains getNewCoords(item,"right"))
+        or (arr contains getNewCoords(item,"up"))
+        or (arr contains getNewCoords(item,"down"))
+    )) countBy $) >= 350 // 70% of 500
+}
+var robots:Array<Robot> = lines map ((robot) -> do {
+    var split = robot splitBy " "
+    var position = stringToCoord(split[0][2 to -1])
+    var velocity = stringToCoord(split[-1][2 to -1])
+    ---
+    {
+        position:position,
+        velocity:velocity
+    }
+})
+@TailRec()
+fun keepMovingRobots(robots,counter=0) = do {
+    if (areMostTouchingOthers(robots.position)) counter
+    else keepMovingRobots(
+        robots map ((robot, index) -> 
+            {
+                position: moveRobot(robot),
+                velocity: robot.velocity
+            }
+        )
+        ,counter+1
+    )
+}
+---
+keepMovingRobots(robots)
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday14%2Fpart2"><img width="300" src="/images/dwplayground-button.png"><a>
+
+</br>
+
+<details>
+  <summary>SPOILER!!!</summary>
+
+I ended up checking for when at least 70% of the robots were touching each other and that seemed to do the trick :D
+
+Here's the cool pic i got!
+
+![tree](/images/day14tree.png)
+
+</details>
+
+</br>
+
+You can check the output with the following script. Just change the `SECONDS` variable.
+
+<details>
+  <summary>Second script</summary>
+
+```dataweave
+output application/json
+var robots = payload splitBy "\n"
+var WIDTH = 101
+var HEIGHT = 103
+var SECONDS = 7037
+type Coords = {
+    x:Number,
+    y:Number
+}
+fun stringToCoord(str:String):Coords = do {
+    var split = str splitBy ","
+    ---
+    {x:split[0] as Number, y:split[1] as Number}
+}
+fun moveRobot(position:Coords,velocity:Coords):Coords = do {
+    var x = position.x + velocity.x
+    var y = position.y + velocity.y
+    ---
+    {
+        x: if (x > WIDTH-1) x-WIDTH 
+            else if (x < 0) WIDTH+x
+            else x,
+        y: if (y > HEIGHT-1) y-HEIGHT
+            else if (y < 0) HEIGHT+y
+            else y
+    }
+}
+@TailRec()
+fun moveRobotXTimes(position:Coords,velocity:Coords,times=SECONDS):Coords = do {
+    times match {
+        case 0 -> position
+        else -> moveRobotXTimes(
+            moveRobot(position, velocity), velocity, times-1
+        )
+    }
+}
+var robotsAfterMoving = robots map ((robot) -> do {
+    var split = robot splitBy " "
+    var position = stringToCoord(split[0][2 to -1])
+    var velocity = stringToCoord(split[-1][2 to -1])
+    ---
+    moveRobotXTimes(position,velocity)
+})
+var obj = robotsAfterMoving groupBy ($.x ++ "," ++ $.y)
+---
+(0 to HEIGHT-1) map ((y) ->
+    ((0 to WIDTH-1) map ((x) ->
+        if (!isEmpty(obj[x ++ "," ++ y])) "X" else "."
+    )) joinBy ""
+)
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday14%2Fpart2image"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ## 🔹 Day 19
 
