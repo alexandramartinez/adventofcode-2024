@@ -78,7 +78,7 @@ Total stars: ⭐️ 30 / 50
 
 </details>
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -96,7 +96,7 @@ var b = payload.column_3 orderBy $
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday1%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2
+### ⭐️⭐️ Part 2
 
 <details>
   <summary>Script</summary>
@@ -130,7 +130,7 @@ a map ((item) ->
 1 3 6 7 9
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -170,7 +170,7 @@ var increasing = "increasing"
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday2%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2
+### ⭐️⭐️ Part 2
 
 > Horrible code. But I did what I had to do :(
 
@@ -257,7 +257,7 @@ xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))
 xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -273,7 +273,7 @@ xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday3%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2
+### ⭐️⭐️ Part 2
 
 <details>
   <summary>Script</summary>
@@ -324,7 +324,7 @@ M.S
 M.S
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -364,7 +364,7 @@ flatten
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday4%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2
+### ⭐️⭐️ Part 2
 
 <details>
   <summary>Script</summary>
@@ -432,7 +432,7 @@ flatten
 97,13,75,29,47
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -462,7 +462,7 @@ updatesLines map ((line, lineidx) -> do {
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday5%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2 (unsolved)
+### ⭐️⭐️ Part 2 (unsolved)
 
 tbd
 
@@ -485,7 +485,7 @@ tbd
 ......#...
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -537,7 +537,7 @@ sizeOf(getRoute(matrix) distinctBy $)
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday6%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2 (unsolved)
+### ⭐️⭐️ Part 2 (unsolved)
 
 tbd
 
@@ -559,7 +559,7 @@ tbd
 292: 11 6 16 20
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -591,7 +591,7 @@ lines(payload) map ((equation, equationIndex) -> do {
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday7%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2
+### ⭐️⭐️ Part 2
 
 <details>
   <summary>Script</summary>
@@ -644,7 +644,7 @@ lines(payload) map ((equation, equationIndex) -> do {
 ............
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -712,7 +712,7 @@ then sizeOf($)
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday8%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2
+### ⭐️⭐️ Part 2
 
 <details>
   <summary>Script</summary>
@@ -795,7 +795,7 @@ then sizeOf($)
 2333133121414131402
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -826,7 +826,7 @@ thisthing.r[0 to thisthing.idx] map ($*$$) then sum($)
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday9%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2 (unsolved)
+### ⭐️⭐️ Part 2 (unsolved)
 
 tbd
 
@@ -847,7 +847,7 @@ tbd
 10456732
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -882,7 +882,7 @@ flatten(lines map ((line, lineidx) ->
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday10%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2
+### ⭐️⭐️ Part 2
 
 <details>
   <summary>Script</summary>
@@ -946,7 +946,7 @@ After 6 blinks:
 2097446912 14168 4048 2 0 2 4 40 48 2024 40 48 80 96 2 8 6 7 6 0 3 2
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -975,7 +975,7 @@ sizeOf((payload splitBy " ") blinkTimes 25)
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday11%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2
+### ⭐️⭐️ Part 2
 
 <details>
   <summary>Script</summary>
@@ -1046,7 +1046,7 @@ MIIISIJEEE
 MMMISSJEEE
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 > Ran with the full input in the DW CLI online [here](https://github.com/alexandramartinez/dwcli-github-actions/actions/runs/13143859945). Took less than 4 min. Not my best code :')
 
@@ -1145,7 +1145,7 @@ then sum($)
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday12%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2
+### ⭐️⭐️ Part 2
 
 > Got some help from [reddit](https://www.reddit.com/r/adventofcode/comments/1hcpyic/comment/m1q1nrj/) and ended up using the DFS algorithm mentioned there. The corner trick was amazing!
 > I'm sure my code can be made way simpler but this was the first code that worked, so I just decided to leave it like that even if it's not the best :)
@@ -1314,7 +1314,7 @@ Button B: X+27, Y+71
 Prize: X=18641, Y=10279
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 > To be completely honest, I didn't solve this one myself cause I was trying to make huge Trees and I realized it was impossible. So, I googled and ended up [here](https://dev.to/grantdotdev/advent-of-code-24-day-13-claw-contraption-n2p). Tysm Grant! ✨
 
@@ -1353,7 +1353,7 @@ then sum($)
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday13%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2
+### ⭐️⭐️ Part 2
 
 > Exact same code as part 1, only adding `+ 10000000000000` to both `x` and `y` fields from `var prize`
 
@@ -1651,7 +1651,7 @@ brgr
 bbrgwb
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -1687,7 +1687,7 @@ fun checkDesign(initialDesign:String, currentDesign:String, acc="") = do {
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday19%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2 (unsolved)
+### ⭐️⭐️ Part 2 (unsolved)
 
 tbd
 
@@ -1732,7 +1732,7 @@ tb-vc
 td-yn
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -1765,7 +1765,7 @@ sizeOf(matches)
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday23%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2
+### ⭐️⭐️ Part 2
 
 <details>
   <summary>Script</summary>
@@ -1857,7 +1857,7 @@ tgd XOR rvg -> z12
 tnw OR pbm -> gnj
 ```
 
-### Part 1
+### ⭐️ Part 1
 
 <details>
   <summary>Script</summary>
@@ -1914,7 +1914,7 @@ then fromBinary(valuesOf($)[-1 to 0] joinBy "")
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday24%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2 (unsolved)
+### ⭐️⭐️ Part 2 (unsolved)
 
 tbd
 
@@ -1966,7 +1966,7 @@ tbd
 #####
 ```
 
-### Part 1 
+### ⭐️ Part 1 
 
 <details>
   <summary>Script</summary>
@@ -1999,6 +1999,6 @@ sum(locks map ((lock, locki) ->
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday25%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
-### Part 2
+### ⭐️⭐️ Part 2
 
 > Need to finish the rest of the challenges to be unlocked x-x
