@@ -31,9 +31,9 @@ You can filter the challenges using one of the following keywords (ctrl+F or cmd
 
 ## Table of Contents
 
-Total stars: ⭐️ 30 / 50 
+Total stars: ⭐️ 31 / 50 
 
-![](https://progress-bar.xyz/60?width=500)
+![](https://progress-bar.xyz/62?width=500)
 
 - ⭐️⭐️ [Day 1](#-day-1)
 - ⭐️⭐️ [Day 2](#-day-2)
@@ -49,7 +49,7 @@ Total stars: ⭐️ 30 / 50
 - ⭐️⭐️ [Day 12](#-day-12)
 - ⭐️⭐️ [Day 13](#-day-13)
 - ⭐️⭐️ [Day 14](#-day-14)
-- Day 15
+- ⭐️ [Day 15](#-day-15)
 - Day 16
 - Day 17
 - Day 18
@@ -1631,6 +1631,173 @@ var obj = robotsAfterMoving groupBy ($.x ++ "," ++ $.y)
 </details>
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday14%2Fpart2image"><img width="300" src="/images/dwplayground-button.png"><a>
+
+## 🔹 Day 15
+
+- Challenge: [Warehouse Woes](https://adventofcode.com/2024/day/15)
+- Keywords: `strings`, `matrix`, `two inputs`, `navigation`, `recursive`
+- Example input:
+
+```
+########
+#..O.O.#
+##@.O..#
+#...O..#
+#.#.O..#
+#...O..#
+#......#
+########
+
+<^^>>>vv<v>>v<<
+```
+
+### ⭐️ Part 1
+
+<details>
+  <summary>Script</summary>
+
+```dataweave
+import mapString from dw::core::Strings
+output application/json
+type Coords = {x:Number,y:Number}
+var lines = payload splitBy "\n\n"
+var initialMap = do {
+    var thismap = lines[0] splitBy "\n"
+    ---
+    {
+        map: thismap,
+        robot: (flatten(thismap map ((line, y) -> 
+            (line splitBy "") map ((char, x) -> 
+                char match {
+                    case "@" -> {x:x,y:y}
+                    else -> null
+                }
+            )
+        )) filter (!isEmpty($)))[0] as Coords
+    }
+}
+var movements = lines[1] replace "\n" with "" splitBy ""
+fun getChar(arr:Array<String>,x:Number,y:Number):String = if ((x<0) or (y<0)) "" else (arr[y][x] default "")
+@TailRec()
+fun moveBoxes(thisMap, boxes:Array<Coords>, direction:String) = direction match {
+    case "<" -> getChar(thisMap.map, boxes[-1].x-1, boxes[-1].y) match {
+        case "#" -> thisMap
+        case "O" -> moveBoxes(thisMap, boxes + {x:boxes[-1].x-1, y:boxes[-1].y}, direction)
+        case "." -> thisMap update {
+            case .robot.x -> boxes[0].x
+            case .map[thisMap.robot.y] -> $ mapString ((character, index) -> 
+                index match {
+                    case x if (thisMap.robot.x == x) -> "."
+                    case x if (boxes[0].x == x) -> "@"
+                    case x if (boxes[-1].x-1 == x) -> "O"
+                    else -> character
+                }
+            )
+        }
+    }
+    case ">" -> getChar(thisMap.map, boxes[-1].x+1, boxes[-1].y) match {
+        case "#" -> thisMap
+        case "O" -> moveBoxes(thisMap, boxes + {x:boxes[-1].x+1, y:boxes[-1].y}, direction)
+        case "." -> thisMap update {
+            case .robot.x -> boxes[0].x
+            case .map[thisMap.robot.y] -> $ mapString ((character, index) -> 
+                index match {
+                    case x if (thisMap.robot.x == x) -> "."
+                    case x if (boxes[0].x == x) -> "@"
+                    case x if (boxes[-1].x+1 == x) -> "O"
+                    else -> character
+                }
+            )
+        }
+    }
+    case "^" -> getChar(thisMap.map, boxes[-1].x, boxes[-1].y-1) match {
+        case "#" -> thisMap
+        case "O" -> moveBoxes(thisMap, boxes + {x:boxes[-1].x, y:boxes[-1].y-1}, direction)
+        case "." -> thisMap update {
+            case .robot.y -> boxes[0].y
+            case .map[thisMap.robot.y] -> $ replace "@" with "."
+            case .map[boxes[0].y] -> $[0 to boxes[0].x-1] ++ "@" ++ $[boxes[0].x+1 to -1]
+            case .map[boxes[-1].y-1] -> $[0 to boxes[-1].x-1] ++ "O" ++ $[boxes[-1].x+1 to -1]
+        }
+    }
+    case "v" -> getChar(thisMap.map, boxes[-1].x, boxes[-1].y+1) match {
+        case "#" -> thisMap
+        case "O" -> moveBoxes(thisMap, boxes + {x:boxes[-1].x, y:boxes[-1].y+1}, direction)
+        case "." -> thisMap update {
+            case .robot.y -> boxes[0].y
+            case .map[thisMap.robot.y] -> $ replace "@" with "."
+            case .map[boxes[0].y] -> $[0 to boxes[0].x-1] ++ "@" ++ $[boxes[0].x+1 to -1]
+            case .map[boxes[-1].y+1] -> $[0 to boxes[-1].x-1] ++ "O" ++ $[boxes[-1].x+1 to -1]
+        }
+    }
+}
+fun moveRobot(thisMap, moveTo:String) = moveTo match {
+    case "<" -> getChar(thisMap.map, thisMap.robot.x-1, thisMap.robot.y) match {
+        case "#" -> thisMap
+        case "O" -> moveBoxes(thisMap, [{x:thisMap.robot.x-1, y:thisMap.robot.y}], moveTo) 
+        case "." -> thisMap update {
+            case .robot.x -> $-1
+            case .map[thisMap.robot.y] -> $ mapString ((character, index) -> 
+                index match {
+                    case x if (thisMap.robot.x == x) -> "."
+                    case x if (thisMap.robot.x-1 == x) -> "@"
+                    else -> character
+                }
+            )
+        }
+    }
+    case ">" -> getChar(thisMap.map, thisMap.robot.x+1, thisMap.robot.y) match {
+        case "#" -> thisMap
+        case "O" -> moveBoxes(thisMap, [{x:thisMap.robot.x+1, y:thisMap.robot.y}], moveTo) 
+        case "." -> thisMap update {
+            case .robot.x -> $+1
+            case .map[thisMap.robot.y] -> $ mapString ((character, index) -> 
+                index match {
+                    case x if (thisMap.robot.x == x) -> "."
+                    case x if (thisMap.robot.x+1 == x) -> "@"
+                    else -> character
+                }
+            )
+        }
+    }
+    case "^" -> getChar(thisMap.map, thisMap.robot.x, thisMap.robot.y-1) match {
+        case "#" -> thisMap
+        case "O" -> moveBoxes(thisMap, [{x:thisMap.robot.x, y:thisMap.robot.y-1}], moveTo) 
+        case "." -> thisMap update {
+            case .robot.y -> $-1
+            case .map[thisMap.robot.y] -> $ replace "@" with "."
+            case .map[thisMap.robot.y-1] -> $[0 to thisMap.robot.x-1] ++ "@" ++ $[thisMap.robot.x+1 to -1]
+        }
+    }
+    case "v" -> getChar(thisMap.map, thisMap.robot.x, thisMap.robot.y+1) match {
+        case "#" -> thisMap
+        case "O" -> moveBoxes(thisMap, [{x:thisMap.robot.x, y:thisMap.robot.y+1}], moveTo) 
+        case "." -> thisMap update {
+            case .robot.y -> $+1
+            case .map[thisMap.robot.y] -> $ replace "@" with "."
+            case .map[thisMap.robot.y+1] -> $[0 to thisMap.robot.x-1] ++ "@" ++ $[thisMap.robot.x+1 to -1]
+        }
+    }
+}
+@TailRec()
+fun keepMoving(movementsList:Array<String>, thisMap) = movementsList match {
+    case [headMovement ~ tailMovements] -> keepMoving(
+        tailMovements,
+        thisMap moveRobot headMovement
+    )
+    case [] -> thisMap
+}
+---
+keepMoving(movements,initialMap).map map ((line, y) -> 
+    sum((line splitBy "") map ((char, x) -> 
+        if (char == "O") 100 * y + x
+        else 0
+    ))
+) then sum($)
+```
+</details>
+
+<a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday15%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
 ## 🔹 Day 19
 
