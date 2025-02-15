@@ -1799,6 +1799,10 @@ keepMoving(movements,initialMap).map map ((line, y) ->
 
 <a href="https://dataweave.mulesoft.com/learn/playground?projectMethod=GHRepo&repo=alexandramartinez%2Fadventofcode-2024&path=scripts%2Fday15%2Fpart1"><img width="300" src="/images/dwplayground-button.png"><a>
 
+## Part 2 (unsolved)
+
+tbd
+
 ## 🔹 Day 19
 
 - Challenge: [Linen Layout](https://adventofcode.com/2024/day/19)
